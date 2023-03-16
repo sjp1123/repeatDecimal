@@ -18,6 +18,11 @@ submit.addEventListener("click", function (e) {
 
         moxs.push(mox);
 
+        if (namuzi == 0) {
+            namuzi_num = -1;
+            break;
+        }
+
         var break_true = false;
 
         for (i = 0; i < namuzis.length; i++) {
@@ -37,16 +42,19 @@ submit.addEventListener("click", function (e) {
     }
 
     var decimal = "";
+    if (namuzi_num == -1) {
+        answer.textContent = moxs[0].toString();
+        return;
+    }
     decimal += moxs[0].toString() + ".";
 
     for (i = 1; i < moxs.length; i++) {
-        if(i == namuzi_num)
-        {
-            decimal += "˙"
+        if (i == namuzi_num) {
+            decimal += "˙";
         }
         decimal += moxs[i].toString();
     }
-    decimal += "˙"
-    
-    answer.textContent = decimal
+    decimal += "˙";
+
+    answer.textContent = decimal;
 });
