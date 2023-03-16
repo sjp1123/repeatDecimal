@@ -11,6 +11,9 @@ submit.addEventListener("click", function (e) {
 
     var namuzis = [];
     var moxs = [];
+
+    var is_repeating = true;
+
     namuzi_num = 0;
     while (true) {
         var mox = parseInt(ja_num / mo_num);
@@ -19,7 +22,7 @@ submit.addEventListener("click", function (e) {
         moxs.push(mox);
 
         if (namuzi == 0) {
-            namuzi_num = -1;
+            is_repeating = false;
             break;
         }
 
@@ -42,19 +45,21 @@ submit.addEventListener("click", function (e) {
     }
 
     var decimal = "";
-    if (namuzi_num == -1) {
-        answer.textContent = moxs[0].toString();
-        return;
+    decimal += moxs[0].toString();
+
+    if (moxs.length > 1) {
+        decimal += ".";
     }
-    decimal += moxs[0].toString() + ".";
 
     for (i = 1; i < moxs.length; i++) {
-        if (i == namuzi_num) {
+        if (i == namuzi_num && is_repeating) {
             decimal += "˙";
         }
         decimal += moxs[i].toString();
     }
-    decimal += "˙";
+    if (is_repeating) {
+        decimal += "˙";
+    }
 
     answer.textContent = decimal;
 });
