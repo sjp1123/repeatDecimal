@@ -1,9 +1,9 @@
 var bunja = document.getElementById("bunja");
 var bunmo = document.getElementById("bunmo");
-var submit = document.getElementById("submit_b");
-var answer = document.getElementById("answer");
+var submit_b = document.getElementById("submit_b");
+var answer_b = document.getElementById("answer");
 
-submit.addEventListener("click", function (e) {
+submit_b.addEventListener("click", function (e) {
     // ˙
     e.preventDefault();
     var ja_num = bunja.value;
@@ -61,5 +61,5 @@ submit.addEventListener("click", function (e) {
         decimal += "˙";
     }
 
-    answer.textContent = decimal;
+    answer_b.textContent = decimal;
 });
