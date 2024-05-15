@@ -9,39 +9,36 @@ submit_b.addEventListener("click", function (e) {
     var ja_num = bunja.value;
     var mo_num = bunmo.value;
 
-    var namuzis = [];
+    var namuzis_in = new Set([]);
+    var namuzis = []
     var moxs = [];
 
-    var is_repeating = true;
-
-    namuzi_num = 0;
     while (true) {
-        var mox = parseInt(ja_num / mo_num);
+        var mox = Math.floor(ja_num / mo_num);
         var namuzi = ja_num % mo_num;
 
         moxs.push(mox);
 
         if (namuzi == 0) {
-            is_repeating = false;
             break;
         }
 
-        var break_true = false;
-
-        for (i = 0; i < namuzis.length; i++) {
-            if (namuzis[i] == namuzi) {
-                var namuzi_num = i + 1;
-                break_true = true;
-            }
-        }
-
-        if (break_true) {
-            break;
+        if (namuzis_in.has(namuzi)) {
+            break
         }
 
         namuzis.push(namuzi);
+        namuzis_in.add(namuzi);
 
         ja_num = namuzi * 10;
+    }
+
+    var namuzi_num = 0
+    for (i = 0; i < namuzis.length; i++) {
+        if (namuzis[i] == namuzi) {
+            namuzi_num = i + 1;
+            break
+        }
     }
 
     var decimal = "";
@@ -52,12 +49,13 @@ submit_b.addEventListener("click", function (e) {
     }
 
     for (i = 1; i < moxs.length; i++) {
-        if (i == namuzi_num && is_repeating) {
+        if (i == namuzi_num) {
             decimal += "˙";
         }
         decimal += moxs[i].toString();
     }
-    if (is_repeating) {
+
+    if (namuzi_num) {
         decimal += "˙";
     }
 
