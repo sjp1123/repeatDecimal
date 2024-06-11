@@ -44,13 +44,15 @@ submit_s.addEventListener("click", function (e) {
 
 function YakBun(bunja, bunmo) {
     // 약분 함수
-    let gcd = 1;
+    a = Math.max(bunja, bunmo)
+    b = Math.min(bunja, bunmo)
 
-    for (let i = 2; i <= Math.min(bunja, bunmo); i++) {
-        if (bunja % i === 0 && bunmo % i === 0) {
-            gcd = i;
-        }
+    while (b != 0) {
+        n = a%b
+        a = b
+        b = n
     }
+    let gcd = a
 
     bunja /= gcd;
     bunmo /= gcd;
